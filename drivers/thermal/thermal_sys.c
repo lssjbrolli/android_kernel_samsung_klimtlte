@@ -1166,8 +1166,9 @@ void thermal_zone_device_update(struct thermal_zone_device *tz)
 		pr_warn("failed to read out thermal zone %d\n", tz->id);
 		goto leave;
 	}
-
-	pr_info("[TMU_POLLING] polling_delay=%dms, temperature=%ld\n", tz->polling_delay, temp / 1000);
+        
+        // Reduce thermal info in dmesg
+	//pr_info("[TMU_POLLING] polling_delay=%dms, temperature=%ld\n", tz->polling_delay, temp / 1000);
 	for (count = 0; count < tz->trips; count++) {
 		tz->ops->get_trip_type(tz, count, &trip_type);
 		tz->ops->get_trip_temp(tz, count, &trip_temp);
